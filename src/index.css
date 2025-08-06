@@ -1,0 +1,168 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Developer Portfolio Design System with Yellow & Dark Theme */
+
+@layer base {
+  :root {
+    /* Core Colors - Based on user's palette */
+    --background: 218 32% 6%;          /* #101820 - Main dark background */
+    --foreground: 60 100% 97%;         /* Light text */
+    
+    --card: 218 32% 8%;                /* Slightly lighter card background */
+    --card-foreground: 60 100% 97%;
+    
+    --popover: 218 32% 8%;
+    --popover-foreground: 60 100% 97%;
+    
+    --primary: 53 100% 54%;            /* #fee715 - Yellow highlight */
+    --primary-foreground: 218 32% 6%;  /* Dark text on yellow */
+    
+    --secondary: 218 32% 12%;          /* Elevated surface */
+    --secondary-foreground: 60 100% 90%;
+    
+    --muted: 218 32% 10%;              /* Subtle background */
+    --muted-foreground: 220 10% 70%;   /* Muted text */
+    
+    --accent: 53 100% 54%;             /* Yellow accent */
+    --accent-foreground: 218 32% 6%;
+    
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 60 100% 97%;
+    
+    --border: 218 32% 15%;             /* Subtle borders */
+    --input: 218 32% 12%;
+    --ring: 53 100% 54%;               /* Yellow focus ring */
+    
+    --radius: 0.75rem;
+    
+    /* Custom Design Tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(53 100% 54%), hsl(45 100% 60%));
+    --gradient-dark: linear-gradient(135deg, hsl(218 32% 6%), hsl(218 32% 10%));
+    --gradient-card: linear-gradient(135deg, hsl(218 32% 8%), hsl(218 32% 12%));
+    
+    --shadow-glow: 0 0 40px hsl(53 100% 54% / 0.2);
+    --shadow-card: 0 4px 20px hsl(218 32% 4% / 0.4);
+    --shadow-elevated: 0 8px 40px hsl(218 32% 4% / 0.6);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+}
+
+@layer components {
+  /* Typography System */
+  .text-hero {
+    @apply text-6xl font-bold leading-tight tracking-tight;
+  }
+  
+  .text-section-title {
+    @apply text-3xl font-semibold tracking-tight;
+  }
+  
+  .text-code {
+    @apply font-mono text-sm;
+  }
+  
+  /* Component Variants */
+  .card-gradient {
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+    @apply border border-border/20;
+  }
+  
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .hero-button {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground font-semibold px-8 py-4 rounded-lg;
+    transition: var(--transition-spring);
+  }
+  
+  .hero-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevated);
+  }
+  
+  .code-block {
+    @apply bg-muted/50 border border-border/30 rounded-lg p-4 font-mono text-sm;
+    background: linear-gradient(135deg, hsl(var(--muted)), hsl(var(--muted) / 0.8));
+  }
+  
+  /* Animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes glow {
+    from { box-shadow: 0 0 20px hsl(var(--primary) / 0.3); }
+    to { box-shadow: 0 0 40px hsl(var(--primary) / 0.6); }
+  }
+  
+  @keyframes slideUp {
+    from { 
+      opacity: 0; 
+      transform: translateY(30px); 
+    }
+    to { 
+      opacity: 1; 
+      transform: translateY(0); 
+    }
+  }
+  
+  /* Responsive Typography */
+  @media (max-width: 768px) {
+    .text-hero {
+      @apply text-4xl;
+    }
+    
+    .text-section-title {
+      @apply text-2xl;
+    }
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
